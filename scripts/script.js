@@ -7,6 +7,7 @@ const btnPrev = document.querySelector(".btn-prev");
 const btnNext = document.querySelector(".btn-next");
 const btnShare = document.querySelector(".btn-share");
 const divTypes = document.querySelector(".types");
+const divMessage = document.querySelector(".message");
 
 const urlParams = new URLSearchParams(window.location.search);
 let pokemonParam = urlParams.get("pokemon");
@@ -109,12 +110,20 @@ btnNext.addEventListener("click", () => {
     renderPokemon(searchPokemon);
 });
 
-btnShare.addEventListener("click", async () => {
+const copyText = async (text) => {
     const type = "text/plain";
-    const text = `${window.location.href}?pokemon=${spanPokemonName.textContent}`;
     const blob = new Blob([text], { type });
     const data = [new ClipboardItem({ [type]: blob })];
     await navigator.clipboard.write(data);
+}
+
+btnShare.addEventListener("click", async () => {
+    const URL = `${window.location.href}?pokemon=${spanPokemonName.textContent}`;
+    await copyText(URL);
+    divMessage.style.animationName = "showMessage";
+    setTimeout(() => {
+        divMessage.style.animationName = "";
+    }, 2000)
 });
 
 renderPokemon(searchPokemon);

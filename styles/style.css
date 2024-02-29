@@ -11,6 +11,7 @@ body {
     text-align: center;
     background: linear-gradient(to bottom, #6ab7f5, #fff);
     min-height: 100vh;
+    overflow: hidden;
     min-height: 100svh;
 }
 
@@ -127,4 +128,30 @@ main {
     padding: 2.5%;
     background-color: #6ab7f5;
     color: black;
+}
+
+.message {
+    position: absolute;
+    top: 100%;
+    right: 5%;
+    width: 80%;
+    max-width: 300px;
+    background-color: white;
+    border: 1px solid black;
+    box-shadow: 2px 2px 0 #333;
+    font-size: clamp(8px, 5vw, 1rem);
+    padding: 1%;
+    animation: 1s ease-in 2 alternate forwards;
+}
+
+@keyframes showMessage {
+    from {
+        top: 100%;
+    }
+    50% {
+        top: 90%;
+    }
+    100% {
+        top: 90%;
+    }
 }
